@@ -27,16 +27,13 @@ provider "buildkite" {
 
 # Add a pipeline
 resource "buildkite_pipeline" "pipeline" {
-  color        = "#00FF17"
-  emoji        = ":control_knobs:"
+  color        = "#7bda68"
+  emoji        = ":clapper:"
   tags         = [ "demo", "tofu", "expendable", "auto" ]
+  cluster_id   = "Q2x1c3Rlci0tLWFkODYwNDVhLWJkN2YtNGRjNy04YmI1LTJiMWY2M2JiZjU1NQ=="
   name         = var.pipeline_name
   repository   = var.pipeline_repo
-  steps = <<EOT
-steps:
-  - label: ':pipeline: Pipeline Uploady'
-    command: buildkite-agent pipeline upload .buildkite/pipeline.yml
-EOT
+  steps        = file("${path.module}/pipeline.yml")
 
   provider_settings = {
     build_branches      = false

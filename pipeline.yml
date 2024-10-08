@@ -1,0 +1,6 @@
+agents:
+  queue: q1
+
+steps:
+  - label: ':pipeline: Pipeline Upload step'
+    command: buildkite-agent pipeline upload .buildkite/pipeline.yml
